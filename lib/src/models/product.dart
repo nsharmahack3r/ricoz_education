@@ -5,21 +5,25 @@ class Product {
     final int id;
     final String title;
     final String description;
+    final int price;
   Product({
     required this.id,
     required this.title,
     required this.description,
+    required this.price,
   });
 
   Product copyWith({
     int? id,
     String? title,
     String? description,
+    int? price,
   }) {
     return Product(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
+      price: price ?? this.price,
     );
   }
 
@@ -28,6 +32,7 @@ class Product {
       'id': id,
       'title': title,
       'description': description,
+      'price': price,
     };
   }
 
@@ -36,6 +41,7 @@ class Product {
       id: map['id'] as int,
       title: map['title'] as String,
       description: map['description'] as String,
+      price: map['price'] as int,
     );
   }
 
@@ -44,7 +50,9 @@ class Product {
   factory Product.fromJson(String source) => Product.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Product(id: $id, title: $title, description: $description)';
+  String toString() {
+    return 'Product(id: $id, title: $title, description: $description, price: $price)';
+  }
 
   @override
   bool operator ==(covariant Product other) {
@@ -53,9 +61,15 @@ class Product {
     return 
       other.id == id &&
       other.title == title &&
-      other.description == description;
+      other.description == description &&
+      other.price == price;
   }
 
   @override
-  int get hashCode => id.hashCode ^ title.hashCode ^ description.hashCode;
+  int get hashCode {
+    return id.hashCode ^
+      title.hashCode ^
+      description.hashCode ^
+      price.hashCode;
+  }
 }

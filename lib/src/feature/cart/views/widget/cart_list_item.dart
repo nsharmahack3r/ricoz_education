@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_base/src/feature/cart/controller/cart_controller.dart';
 import 'package:flutter_riverpod_base/src/models/product.dart';
 
-class ProductListItem extends ConsumerWidget {
-  const ProductListItem({super.key, required this.product});
+class CartListItem extends ConsumerWidget {
+  const CartListItem({super.key, required this.product});
 
   final Product product;
 
@@ -22,8 +22,8 @@ class ProductListItem extends ConsumerWidget {
       child: Row(
         children: [
           Container(
-            width: 130,
-            height: 130,
+            width: 100,
+            height: 100,
             decoration: BoxDecoration(
                 color: Colors.grey.shade300,
                 borderRadius: BorderRadius.circular(10.0)),
@@ -43,39 +43,24 @@ class ProductListItem extends ConsumerWidget {
                   maxLines: 1,
                 ),
                 const SizedBox(
-                  height: 4,
+                  height: 10,
                 ),
-                SizedBox(
-                  height: 70,
-                  child: Text(
-                    product.description,
-                    style: const TextStyle(fontSize: 16),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                  ),
+                Text(
+                  "\$${product.price}",
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "\$${product.price}",
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        ref.read(cartControllerProvider.notifier).addProduct(
-                              product: product,
-                              context: context,
-                            );
-                      },
-                      icon: Icon(
-                        Icons.shopping_cart,
-                        size: 32,
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                  ],
+                MaterialButton(
+                  onPressed: () {
+                    // Remove Item from List
+                    ref.read(cartControllerProvider.notifier).removeProduct(
+                          productId: product.id,
+                          context: context,
+                        );
+                  },
+                  color: Colors.grey.shade300,
+                  padding: EdgeInsets.zero,
+                  child: const Text("Remove"),
                 ),
               ],
             ),

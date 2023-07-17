@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod_base/src/commons/views/splash.dart';
+import 'package:flutter_riverpod_base/src/feature/cart/views/cart.dart';
 import 'package:flutter_riverpod_base/src/feature/home/view/home.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,6 +18,13 @@ final GoRouter router = GoRouter(
       path: HomeView.routePath,
       builder: (BuildContext context, GoRouterState state) {
         return const HomeView();
+      },
+    ),
+
+    GoRoute(
+      path: CartView.routePath,
+      builder: (BuildContext context, GoRouterState state) {
+        return const CartView();
       },
     ),
   ],

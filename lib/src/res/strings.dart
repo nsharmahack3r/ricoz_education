@@ -8,7 +8,7 @@
 ///```
 
 class AppStrings{
-  static const appName = "Riverpod app template";
+  static const appName = "The Shopp";
 }
 
 class FailureMessage {
@@ -28,6 +28,8 @@ class FailureMessage {
 class SnackBarMessages {
   static const productLoadSuccess = "Products Loaded Successfully";
   static const productLoadFailed = "Failed To Load Products";
+  static const itemAdded = "Item added to the cart!";
+  static const itemRemoved = "Item removed to the cart!";
 }
 
 class LogLabel {
@@ -38,4 +40,8 @@ class LogLabel {
   static const httpPut = "HTTP/PUT";
   static const httpDelete = "HTTP/DELETE";
   static const sharedPrefs = "SHARED_PREFERENCES";
+}
+
+class CartViewString {
+  static const title = "Cart";
 }

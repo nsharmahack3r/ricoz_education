@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod_base/src/feature/cart/views/cart.dart';
-import 'package:flutter_riverpod_base/src/feature/product/view/products.dart';
+import 'package:flutter_riverpod_base/src/experiment/widgets/product_list_item.dart';
 import 'package:flutter_riverpod_base/src/res/strings.dart';
-import 'package:go_router/go_router.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
-
-  static const routePath = "/home";
+class ProductPage extends StatelessWidget {
+  const ProductPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,22 +27,24 @@ class HomeView extends StatelessWidget {
                     AppStrings.appName,
                     style: TextStyle(color: Colors.grey.shade800, fontSize: 32),
                   ),
-                  IconButton(
-                    onPressed: () {
-                      context.push(CartView.routePath);
-                    },
-                    icon: Icon(
-                      Icons.shopping_cart,
-                      size: 32,
-                      color: Colors.grey.shade600,
-                    ),
+                  Icon(
+                    Icons.shopping_cart,
+                    size: 32,
+                    color: Colors.grey.shade600,
                   ),
                 ],
               ),
             ),
             // Item List
-            const Flexible(
-              child: ProductsList(),
+            Flexible(
+              child: ListView.builder(
+                padding: const EdgeInsets.all(20.0),
+                itemCount: 5,
+                shrinkWrap: true,
+                itemBuilder: (context, index){
+                  return const ProductListItem();
+                },
+              ),
             ),
           ],
         ),

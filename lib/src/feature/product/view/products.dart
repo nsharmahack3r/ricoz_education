@@ -25,12 +25,18 @@ class ProductsList extends ConsumerWidget {
         }
         if (snapshot.connectionState == ConnectionState.done) {
           if (data != null) {
+
+
             return ListView.builder(
+              padding: const EdgeInsets.all(20.0),
               itemCount: data.length,
               itemBuilder: (context, index) {
                 return ProductListItem(product: data[index]);
               },
             );
+
+
+
           } else {
             return const Center(
               child: Text("Error Loading Data"),
