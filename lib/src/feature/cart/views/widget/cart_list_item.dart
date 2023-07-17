@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_base/src/commons/views/widgets/product_item_card.dart';
 import 'package:flutter_riverpod_base/src/feature/cart/controller/cart_controller.dart';
 import 'package:flutter_riverpod_base/src/models/product.dart';
 
@@ -10,15 +11,7 @@ class CartListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Container(
-      padding: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(color: Colors.grey.shade400, blurRadius: 10),
-          ],
-          borderRadius: BorderRadius.circular(10.0)),
-      margin: const EdgeInsets.symmetric(vertical: 10),
+    return ProductItemCard(
       child: Row(
         children: [
           Container(

@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod_base/src/commons/providers/common_providers.dart';
 import 'package:flutter_riverpod_base/src/feature/cart/controller/cart_controller.dart';
 import 'package:flutter_riverpod_base/src/feature/cart/views/widget/cart_list.dart';
 import 'package:flutter_riverpod_base/src/res/strings.dart';
 import 'package:go_router/go_router.dart';
 
-class CartView extends ConsumerWidget {
+class CartView extends StatelessWidget {
   const CartView({super.key});
 
   static const routePath = "/cart";
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final cartState = ref.watch(cartControllerProvider);
-
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -46,10 +45,15 @@ class CartView extends ConsumerWidget {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-              child: Text(
-                "Subtotal : \$${cartState.subTotal}",
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final subTotal = ref.watch(cartSubtotalProvider);
+                  return Text(
+                "Subtotal : \$$subTotal",
                 style: TextStyle(color: Colors.grey.shade800, fontSize: 24),
-              ),
+              );
+                },
+              )
             ),
             // Item List
             const Flexible(child: CartProductList()),

@@ -10,7 +10,7 @@ class CartProductList extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final cartState = ref.watch(cartControllerProvider);
 
-    if (cartState.products.isEmpty) {
+    if (cartState.isEmpty) {
       return const Center(
         child: Text("Cart Empty"),
       );
@@ -18,9 +18,9 @@ class CartProductList extends ConsumerWidget {
 
     return ListView.builder(
       padding: const EdgeInsets.all(20.0),
-      itemCount: cartState.products.length,
+      itemCount: cartState.length,
       itemBuilder: (context, index) {
-        return CartListItem(product: cartState.products[index]);
+        return CartListItem(product: cartState[index]);
       },
     );
   }
